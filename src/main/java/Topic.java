@@ -1,16 +1,20 @@
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
-
 public class Topic {
 
     public Topic(int capacidade, int qtdPrioritatios) {
     }
 
-    public List<Passageiro> getAssentosPrioritarios() {
+     public int getNumeroAssentosPrioritarios() {
+        return 0;
+    }
+    public int getNumeroAssentosNormais() {
+        return 0;
+    }
+
+    public Passageiro getPassageiroAssentoNormal(int lugar) {
         return null;
     }
-    public List<Passageiro> getAssentosNormais() {
+
+    public Passageiro getPassageiroAssentoPrioritario(int lugar) {
         return null;
     }
 

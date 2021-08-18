@@ -6,8 +6,8 @@ public class TestTopic {
     @Test
     public void testInicializacao() {
         Topic topic = new Topic(10,2);
-        assertEquals(topic.getAssentosNormais().size(), 8, "Quantidade errada de assentos comuns!");
-        assertEquals(topic.getAssentosPrioritarios().size(), 2, "Quantidade errada de assentos prioritários!");
+        assertEquals(8, topic.getAssentosNormais().size(), "Quantidade errada de assentos comuns!");
+        assertEquals(2, topic.getAssentosPrioritarios().size(), "Quantidade errada de assentos prioritários!");
     }
 
     @Test
@@ -20,34 +20,39 @@ public class TestTopic {
         Topic topic = new Topic(2,1);
         assertTrue(topic.subir(new Passageiro("Marlus", 120)), "A topic tem vaga mas o passageiro não foi inserido!");
         assertTrue(topic.subir(new Passageiro("Eduarda", 19)), "A topic tem vaga mas o passageiro não foi inserido!");;
-        Passageiro eduarda = topic.getAssentosNormais().get(0);
-        Passageiro marlus = topic.getAssentosPrioritarios().get(0);
+        Passageiro eduarda = topic.getPassageiroAssentoNormal(0);
+        Passageiro marlus = topic.getPassageiroAssentoPrioritario(0);
         assertNotNull(marlus, "Falha na inserção!");
+        assertEquals("Marlus", marlus.getNome(), "Passageiro errado");
         assertNotNull(eduarda, "Falha na inserção!");
+        assertEquals("Eduarda", eduarda.getNome(), "Passageiro errado");
     }
     @Test
     public void testPassageiroSemPrioridadeComVagaComum() {
         Topic topic = new Topic(2,1);
         assertTrue(topic.subir(new Passageiro("Eduarda", 19)), "A topic tem vaga mas o passageiro não foi inserido!");
         assertTrue(topic.subir(new Passageiro("Marlus", 120)), "A topic tem vaga mas o passageiro não foi inserido!");
-        Passageiro eduarda = topic.getAssentosNormais().get(0);
-        assertEquals("Eduarda", eduarda.getNome(), "Inseriu o passageiro jovem na prioridade enquanto ainda tinha vaga comum!");
+        Passageiro eduarda = topic.getPassageiroAssentoNormal(0);
+        assertNotNull(eduarda, "Falha na inserção!");
+        assertEquals("Eduarda", eduarda.getNome(), "Passageiro sem prioridade nao encontrado");
     }
     @Test
     public void testPassageiroPrioriatioSemVagaPrioritaria() {
         Topic topic = new Topic(2,1);
         assertTrue(topic.subir(new Passageiro("Eduarda", 190)), "A topic tem vaga mas o passageiro não foi inserido!");
         assertTrue(topic.subir(new Passageiro("Guthyerri", 120)), "Tinha uma vaga comum pro idoso ocupar!");
-        Passageiro guthyerri = topic.getAssentosNormais().get(0);
-        assertNotNull(guthyerri, "Retornou true mas não inseriu!");
+        Passageiro guthyerri = topic.getPassageiroAssentoNormal(0);
+        assertNotNull(guthyerri, "Passageiro nao encontrado");
+        assertEquals("Guthyerri", guthyerri.getNome(), "Passageiro com prioridade nao encontrado");
     }
     @Test
     public void testPassageiroSemPrioriadadeSemVagaComum() {
         Topic topic = new Topic(2,1);
         assertTrue(topic.subir(new Passageiro("Eduarda", 19)), "A topic tem vaga mas o passageiro não foi inserido!");
         assertTrue(topic.subir(new Passageiro("Guthyerri", 19)), "Tinha assento prioritário vago pra ele sentar!");
-        Passageiro guthyerri = topic.getAssentosPrioritarios().get(0);
-        assertNotNull(guthyerri, "Retornou true mas não inseriu!");
+        Passageiro guthyerri = topic.getPassageiroAssentoPrioritario(0);
+        assertNotNull(guthyerri, "Passageiro nao encontrado");
+        assertEquals("Guthyerri", guthyerri.getNome(), "Passageiro com prioridade nao encontrado");
     }
     @Test
     public void testDescidaTopicVazia() {
@@ -59,8 +64,8 @@ public class TestTopic {
         Topic topic = new Topic(2,1);
         topic.subir(new Passageiro("Guthyerri", 19));
         assertTrue(topic.descer("Guthyerri"), "Falha ao remover!");
-        Passageiro guthyerri = topic.getAssentosNormais().get(0);
-        assertNull(guthyerri, "Retornou true mas não removeu a pessoa da topic!");
+        Passageiro guthyerri = topic.getPassageiroAssentoNormal(0);
+        assertNull(guthyerri, "O passageiro nao foi removido");
         assertEquals(2, topic.getVagas(), "Removeu uma posição do array, deveria somente setar como null!!!");
     }
     @Test
