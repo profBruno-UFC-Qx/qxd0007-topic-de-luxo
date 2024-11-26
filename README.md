@@ -13,33 +13,67 @@ O objetivo dessa atividade é exercitar o que vocês aprenderam no cinema com al
 ## Requisitos
 Seu sistema deverá:
 
-- **[3.0 P] Inicializar e Mostrar.** 
-    - Iniciar a topic solicitando a lotação máxima e a quantidade de cadeiras preferenciais.
-	- Retorne um IllegalArgumentException caso haja mais assentos prioritários do que assentos na topic.
-    - Mostrar o estado da topic
-		- Coloque a quantidade de vagas disponível seguido de uma quebra de linha.
-        - Coloque @ na frente das cadeiras preferenciais
-        - Coloque = na frente das cadeiras normais.
-	- Retornar a quantidade de vagas disponíveis.
-- **[5.0 P] Inserir.** 
-    - Inserir passageiros informando id e idade
-        - Se o passageiro for idoso (Idade >= 65):
-            - Se houver cadeiras preferenciais
-                - O coloque na primeira cadeira preferência.
-            - Senão
-                - O coloque na primeira cadeira normal.
-        - Se o passageiro não for idoso.
-            - Se houver cadeiras não preferenciais
-                - O coloque na primeira não preferencial.
-            - Se não
-                - O coloque na primeira cadeira preferencial.
-- **[2.0 P] Remover.** 
-    - Remover passageiros por id
+- Inicializar e Mostrar
+  - A topic deve ser inicializada com a quantidade máxima de assentos e a quantidade de cadeiras preferenciais.
+  - Exiba os assentos preferenciais e normais na seguinte formatação:
+    - Assentos preferenciais começam com @.
+    - Assentos normais começam com =.
+  - Se o assento está ocupado, mostre o identificador do passageiro nele.
+    - Exemplo: [@joao @bia =davi =ana =rex ].
+  - Inclua um resumo da ocupação:
+    - Total de vagas disponíveis: X
+    - Vagas preferenciais disponíveis: Y
+    - Vagas normais disponíveis: Z
+
+- Inserir Passageiro:
+  - O passageiro possui nome e idade.
+  - Regras de alocação:
+     - Idosos (idade ≥ 65):
+       - Devem ser alocados na primeira cadeira preferencial livre.
+       - Caso não haja cadeiras preferenciais livres, são alocados em cadeiras normais.
+    - Demais Passageiros:
+       - Devem ser alocados na primeira cadeira normal livre.
+       - Caso não haja cadeiras normais livres, são alocados em cadeiras preferenciais.
+  - Remover Passageiro:
+    - O passageiro deve ser removido com base no nome.
+     - Caso o nome não exista, exiba uma mensagem informando que o passageiro não está na topic. 
+- Mensagens de Feedback
+  - Caso a topic esteja cheia, ao tentar inserir um passageiro, exiba: Topic lotada. 
+  - Caso o passageiro já esteja na topic, exiba: Passageiro já está na topic. 
+  - Caso tente remover um passageiro que não esteja na topic, exiba: Passageiro não está na topic.
 
 Existe uma lista para as cadeiras normais e outra para as preferenciais. Para facilitar nas operações de busca e inserção, você deverá criar vários métodos privados para simplificar a lógica dos métodos principais.
 
 ## Diagrama
-![diagrama](diagrama.png)
+```mermaid
+classDiagram
+    class Topic {
+        - List<Passageiro> preferenciais
+        - List<Passageiro> normais
+        - int capacidade
+        - int qtdPreferenciais
+        + Topic(int capacidade, int qtdPreferenciais)
+        + boolean subir(Passageiro passageiro)
+        + boolean descer(String id)
+        + String toString()
+        - boolean isTopicCheia()
+        - boolean isPassageiroPresente(String id)
+        - void alocarPreferencial(Passageiro passageiro)
+        - void alocarNormal(Passageiro passageiro)
+    }
+    
+    class Passageiro {
+        - String id
+        - int idade
+        + Passageiro(String id, int idade)
+        + String getId()
+        + int getIdade()
+        + boolean isIdoso()
+        + String toString()
+    }
+    
+    Topic "1" o-- "n" Passageiro
+```
 
 
 ## Exemplo de execução
