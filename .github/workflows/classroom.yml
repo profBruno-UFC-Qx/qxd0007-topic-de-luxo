@@ -196,4 +196,5 @@ jobs:
         runners: inicializacao,subir-passageiro-prioritario-com-vaga,subir-passageiro-sem-prioridade,
                 subir-passageiro-prioritario-sem-vaga,subir-passageiro-sem-vaga,
                 descida-topic-vazia,descida-de-passageiro,descida-passageiro-nao-subiu,
-                subir-topic-lotada
+                subir-topic-lotada,mostrar-vagas,mostrar-topic-vazia,mostrar-topic-cheia,
+                criacao-de-passageiro,test-tostring,prioridade-verdadeira,falsa-prioridade
