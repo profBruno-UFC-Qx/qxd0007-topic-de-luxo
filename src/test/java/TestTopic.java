@@ -77,7 +77,7 @@ public class TestTopic {
         Topic topic = new Topic(2,1);
         topic.subir(new Passageiro("Marlus", 12));
         topic.subir(new Passageiro("Guthyerri", 130));
-        assertFalse(topic.subir(new Passageiro("Hermilson", 16)), "Tamanho da Topic foi estourado!");
+        assertFalse(topic.subir(new Passageiro("Hermilson", 16)), "A topic lotou!");
     }
 
     @Test
@@ -98,7 +98,7 @@ public class TestTopic {
         topic.subir(new Passageiro("Marlus", 120));
         topic.subir(new Passageiro("Eduarda", 19));
         topic.subir(new Passageiro("Guthyerri", 19));
-        assertEquals("[@Marlus =Eduarda =Guthyerri ]", topic.toString(), "Sua lista está com impressão errada!");
+        assertEquals("[@Marlus:120 =Eduarda:19 =Guthyerri:19 ]", topic.toString(), "Sua lista está com impressão errada!");
     }
 
 }
