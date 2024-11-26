@@ -3,7 +3,7 @@ public class Topic {
     public Topic(int capacidade, int qtdPrioritatios) {
     }
 
-     public int getNumeroAssentosPrioritarios() {
+    public int getNumeroAssentosPrioritarios() {
         return 0;
     }
     public int getNumeroAssentosNormais() {

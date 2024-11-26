@@ -10,4 +10,8 @@ public class Passageiro {
     String getNome() {
         return null;
     }
+
+    public int getIdade() {
+        return 0;
+    }
 }
