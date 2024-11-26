@@ -18,12 +18,8 @@ Seu sistema deverá:
   - Exiba os assentos preferenciais e normais na seguinte formatação:
     - Assentos preferenciais começam com @.
     - Assentos normais começam com =.
-  - Se o assento está ocupado, mostre o identificador do passageiro nele.
-    - Exemplo: [@joao @bia =davi =ana =rex ].
-  - Inclua um resumo da ocupação:
-    - Total de vagas disponíveis: X
-    - Vagas preferenciais disponíveis: Y
-    - Vagas normais disponíveis: Z
+  - Se o assento está ocupado, mostre o nome e a idade do passageiro nele.
+    - Exemplo: [@joao:70 @bia:72 =davi:23 =ana:25 =rex:39 ].
 
 - Inserir Passageiro:
   - O passageiro possui nome e idade.
@@ -87,26 +83,26 @@ public class Runner {
 
         Passageiro passageiro = new Passageiro("davi", 17);
         topic.subir(passageiro);
-        System.out.println(topic); //[@ @ =davi = = ]
+        System.out.println(topic); //[@ @ =davi:17 = = ]
 
         passageiro = new Passageiro("joao", 103);
         topic.subir(passageiro);
-        System.out.println(topic); //[@joao @ =davi = = ]
+        System.out.println(topic); //[@joao:103 @ =davi:17 = = ]
         passageiro = new Passageiro("ana", 35);
         topic.subir(passageiro);
-        System.out.println(topic); //[@joao @ =davi =ana = ]
+        System.out.println(topic); // [@joao:103 @ =davi:17 =ana:35 = ]
 
         passageiro = new Passageiro("rex", 20);
         topic.subir(passageiro);
         passageiro = new Passageiro("bia", 16);
         topic.subir(passageiro);
-        System.out.println(topic); // [@joao @bia =davi =ana =rex ]
+        System.out.println(topic); // [@joao:103 @bia:16 =davi:17 =ana:35 =rex:20 ]
 
         topic.descer("davi");
         System.out.println(topic);
         passageiro = new Passageiro("aragao", 96);
         topic.subir(passageiro);
-        System.out.println(topic); //[@joao @bia =aragao =ana =rex ]
+        System.out.println(topic); // [@joao:103 @bia:16 =aragao:96 =ana:35 =rex:20 ]
 
         passageiro = new Passageiro("lucas", 23);
         if(!topic.subir(passageiro)){
@@ -122,7 +118,7 @@ public class Runner {
         if(!topic.subir(passageiro)){
             System.out.println("Passageiro ja esta na topic"); //Passageiro ja esta na topic
         }
-        System.out.println(topic); //[@joao @bia =aragao = =rex ]
+        System.out.println(topic); //[@joao:103 @bia:16 =aragao:96 = =rex:20 ]
 
     }
 }
