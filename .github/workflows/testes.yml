@@ -1,6 +1,7 @@
 name: Testes
 on:
-  push:
+  pull_request:
+    types: [opened, synchronize, reopened]
 jobs:
   testes:
-    uses: profBruno-UFC-Qx/kit-atividades-praticas/.github/workflows/testes.yml@main
+    uses: profBruno-UFC-Qx/kit-projeto-final/.github/workflows/testes.yml@main
