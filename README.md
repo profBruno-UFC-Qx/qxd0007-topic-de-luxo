@@ -121,8 +121,3 @@ public class Runner {
 }
 
 ```
-
-
-## Relatório de Entrega
-
-Não esqueça de preencher o seguinte [formulário](https://forms.gle/xTkFeehZ2ocTctPu9) ao completar a atividade.
