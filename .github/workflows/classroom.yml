@@ -13,13 +13,22 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Configurar JDK
+      uses: actions/setup-java@v4
+      with:
+        distribution: temurin
+        java-version: '21'
+
+    - name: Dar permissão de execução ao gradlew
+      run: chmod +x ./gradlew
+
     - name: Inicialização
       id: inicializacao
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: Inicialização
         setup-command: ''
-        command: gradle test --tests 'TestTopic.inicializacao'
+        command: ./gradlew test --tests 'TestTopic.inicializacao'
         timeout: 10
         max-score: 10
 
@@ -29,7 +38,7 @@ jobs:
       with:
         test-name: Subir passageiro prioritário com vaga prioritária
         setup-command: ''
-        command: gradle test --tests 'TestTopic.subirPassageiroPrioriatioComVagaPrioritaria'
+        command: ./gradlew test --tests 'TestTopic.subirPassageiroPrioriatioComVagaPrioritaria'
         timeout: 10
         max-score: 10
 
@@ -39,7 +48,7 @@ jobs:
       with:
         test-name: Subir passageiro sem prioridade com vaga comum
         setup-command: ''
-        command: gradle test --tests 'TestTopic.subirPassageiroSemPrioridadeComVagaComum'
+        command: ./gradlew test --tests 'TestTopic.subirPassageiroSemPrioridadeComVagaComum'
         timeout: 10
         max-score: 10
 
@@ -49,7 +58,7 @@ jobs:
       with:
         test-name: Subir passageiro prioritário sem vaga prioritária
         setup-command: ''
-        command: gradle test --tests 'TestTopic.subirPassageiroPrioriatioSemVagaPrioritaria'
+        command: ./gradlew test --tests 'TestTopic.subirPassageiroPrioriatioSemVagaPrioritaria'
         timeout: 10
         max-score: 10
 
@@ -59,7 +68,7 @@ jobs:
       with:
         test-name: Subir passageiro sem prioridade sem vaga comum
         setup-command: ''
-        command: gradle test --tests 'TestTopic.subirPassageiroSemPrioridadeSemVagaComum'
+        command: ./gradlew test --tests 'TestTopic.subirPassageiroSemPrioridadeSemVagaComum'
         timeout: 10
         max-score: 10
 
@@ -69,7 +78,7 @@ jobs:
       with:
         test-name: Descida com topic vazia
         setup-command: ''
-        command: gradle test --tests 'TestTopic.descidaComTopicVazia'
+        command: ./gradlew test --tests 'TestTopic.descidaComTopicVazia'
         timeout: 10
         max-score: 10
 
@@ -79,7 +88,7 @@ jobs:
       with:
         test-name: Descida de passageiro
         setup-command: ''
-        command: gradle test --tests 'TestTopic.descidaDePassageiro'
+        command: ./gradlew test --tests 'TestTopic.descidaDePassageiro'
         timeout: 10
         max-score: 10
 
@@ -89,7 +98,7 @@ jobs:
       with:
         test-name: Descida de passageiro que não subiu
         setup-command: ''
-        command: gradle test --tests 'TestTopic.descidaDePassageiroQueNaoSubiu'
+        command: ./gradlew test --tests 'TestTopic.descidaDePassageiroQueNaoSubiu'
         timeout: 10
         max-score: 10
 
@@ -99,7 +108,7 @@ jobs:
       with:
         test-name: Subir na topic lotada
         setup-command: ''
-        command: gradle test --tests 'TestTopic.subirNaTopicLotada'
+        command: ./gradlew test --tests 'TestTopic.subirNaTopicLotada'
         timeout: 10
         max-score: 10
 
@@ -109,7 +118,7 @@ jobs:
       with:
         test-name: Mostrar vagas
         setup-command: ''
-        command: gradle test --tests 'TestTopic.mostrarVagas'
+        command: ./gradlew test --tests 'TestTopic.mostrarVagas'
         timeout: 10
         max-score: 10
 
@@ -119,7 +128,7 @@ jobs:
       with:
         test-name: Mostrar topic vazia
         setup-command: ''
-        command: gradle test --tests 'TestTopic.mostrarTopicVazia'
+        command: ./gradlew test --tests 'TestTopic.mostrarTopicVazia'
         timeout: 10
         max-score: 10
 
@@ -129,7 +138,7 @@ jobs:
       with:
         test-name: Mostrar topic cheia
         setup-command: ''
-        command: gradle test --tests 'TestTopic.mostrarTopicCheia'
+        command: ./gradlew test --tests 'TestTopic.mostrarTopicCheia'
         timeout: 10
         max-score: 10
 
@@ -139,7 +148,7 @@ jobs:
       with:
         test-name: Criação de passageiro
         setup-command: ''
-        command: gradle test --tests 'TestPassageiro.criacaoDePassageiro'
+        command: ./gradlew test --tests 'TestPassageiro.criacaoDePassageiro'
         timeout: 10
         max-score: 10
 
@@ -149,7 +158,7 @@ jobs:
       with:
         test-name: Test toString
         setup-command: ''
-        command: gradle test --tests 'TestPassageiro.testToString'
+        command: ./gradlew test --tests 'TestPassageiro.testToString'
         timeout: 10
         max-score: 10
 
@@ -159,7 +168,7 @@ jobs:
       with:
         test-name: Prioridade verdadeira
         setup-command: ''
-        command: gradle test --tests 'TestPassageiro.prioridadeVerdadeira'
+        command: ./gradlew test --tests 'TestPassageiro.prioridadeVerdadeira'
         timeout: 10
         max-score: 10
 
@@ -169,7 +178,7 @@ jobs:
       with:
         test-name: Falsa prioridade
         setup-command: ''
-        command: gradle test --tests 'TestPassageiro.falsaPrioridade'
+        command: ./gradlew test --tests 'TestPassageiro.falsaPrioridade'
         timeout: 10
         max-score: 10
 
