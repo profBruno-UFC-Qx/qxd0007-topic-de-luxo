@@ -1,17 +1,22 @@
 public class Passageiro {
+    private String nome;
+    private int idade;
 
     public Passageiro(String nome, int idade) {
-
-    }
-    public boolean ePrioritario() {
-        return true;
+        this.nome = nome;
+        this.idade = idade;
     }
 
-    String getNome() {
-        return null;
+    public String getNome() {
+        return nome;
     }
 
     public int getIdade() {
-        return 0;
+        return idade;
+    }
+
+    @Override
+    public String toString() {
+        return nome;
     }
 }
