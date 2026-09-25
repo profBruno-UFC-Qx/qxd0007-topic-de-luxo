@@ -30,163 +30,253 @@ jobs:
     - name: Dar permissão de execução ao gradlew
       run: chmod +x ./gradlew
 
-    - name: Inicialização
+    - name: "Inicialização separa assentos prioritários e normais"
       id: inicializacao
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Inicialização
+        test-name: "Inicialização separa assentos prioritários e normais"
         setup-command: ''
         command: ./gradlew test --tests 'TestTopic.inicializacao'
         timeout: 10
         max-score: 10
 
-    - name: Subir passageiro prioritário com vaga prioritária
-      id: subir-passageiro-prioritario-com-vaga
+    - name: "Topic sem assentos prioritários aloca idoso em assento normal"
+      id: topic-sem-assentos-prioritarios
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Subir passageiro prioritário com vaga prioritária
+        test-name: "Topic sem assentos prioritários aloca idoso em assento normal"
         setup-command: ''
-        command: ./gradlew test --tests 'TestTopic.subirPassageiroPrioriatioComVagaPrioritaria'
+        command: ./gradlew test --tests 'TestTopic.topicSemAssentosPrioritarios'
         timeout: 10
         max-score: 10
 
-    - name: Subir passageiro sem prioridade com vaga comum
-      id: subir-passageiro-sem-prioridade
+    - name: "Topic só com assentos prioritários aloca jovem em assento prioritário"
+      id: topic-so-com-assentos-prioritarios
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Subir passageiro sem prioridade com vaga comum
+        test-name: "Topic só com assentos prioritários aloca jovem em assento prioritário"
         setup-command: ''
-        command: ./gradlew test --tests 'TestTopic.subirPassageiroSemPrioridadeComVagaComum'
+        command: ./gradlew test --tests 'TestTopic.topicSoComAssentosPrioritarios'
         timeout: 10
         max-score: 10
 
-    - name: Subir passageiro prioritário sem vaga prioritária
-      id: subir-passageiro-prioritario-sem-vaga
+    - name: "Subir: prioritário vai para assento prioritário livre"
+      id: subir-prioritario-com-vaga-prioritaria
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Subir passageiro prioritário sem vaga prioritária
+        test-name: "Subir: prioritário vai para assento prioritário livre"
         setup-command: ''
-        command: ./gradlew test --tests 'TestTopic.subirPassageiroPrioriatioSemVagaPrioritaria'
+        command: ./gradlew test --tests 'TestTopic.subirPrioritarioComVagaPrioritaria'
         timeout: 10
         max-score: 10
 
-    - name: Subir passageiro sem prioridade sem vaga comum
-      id: subir-passageiro-sem-vaga
+    - name: "Subir: não prioritário vai para assento normal livre"
+      id: subir-sem-prioridade-com-vaga-normal
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Subir passageiro sem prioridade sem vaga comum
+        test-name: "Subir: não prioritário vai para assento normal livre"
         setup-command: ''
-        command: ./gradlew test --tests 'TestTopic.subirPassageiroSemPrioridadeSemVagaComum'
+        command: ./gradlew test --tests 'TestTopic.subirSemPrioridadeComVagaNormal'
         timeout: 10
         max-score: 10
 
-    - name: Descida com topic vazia
-      id: descida-topic-vazia
+    - name: "Subir: prioritário vai para assento normal quando prioritários estão ocupados"
+      id: subir-prioritario-sem-vaga-prioritaria
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Descida com topic vazia
+        test-name: "Subir: prioritário vai para assento normal quando prioritários estão ocupados"
         setup-command: ''
-        command: ./gradlew test --tests 'TestTopic.descidaComTopicVazia'
+        command: ./gradlew test --tests 'TestTopic.subirPrioritarioSemVagaPrioritaria'
         timeout: 10
         max-score: 10
 
-    - name: Descida de passageiro
-      id: descida-de-passageiro
+    - name: "Subir: não prioritário vai para assento prioritário quando normais estão ocupados"
+      id: subir-sem-prioridade-sem-vaga-normal
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Descida de passageiro
+        test-name: "Subir: não prioritário vai para assento prioritário quando normais estão ocupados"
         setup-command: ''
-        command: ./gradlew test --tests 'TestTopic.descidaDePassageiro'
+        command: ./gradlew test --tests 'TestTopic.subirSemPrioridadeSemVagaNormal'
         timeout: 10
         max-score: 10
 
-    - name: Descida de passageiro que não subiu
-      id: descida-passageiro-nao-subiu
+    - name: "Subir: ocupa o primeiro assento livre, reaproveitando assentos esvaziados"
+      id: subir-ocupa-primeiro-assento-livre
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Descida de passageiro que não subiu
+        test-name: "Subir: ocupa o primeiro assento livre, reaproveitando assentos esvaziados"
         setup-command: ''
-        command: ./gradlew test --tests 'TestTopic.descidaDePassageiroQueNaoSubiu'
+        command: ./gradlew test --tests 'TestTopic.subirOcupaPrimeiroAssentoLivre'
         timeout: 10
         max-score: 10
 
-    - name: Subir na topic lotada
-      id: subir-topic-lotada
+    - name: "Subir: topic lotada recusa passageiro sem alterar os assentos"
+      id: subir-na-topic-lotada
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Subir na topic lotada
+        test-name: "Subir: topic lotada recusa passageiro sem alterar os assentos"
         setup-command: ''
         command: ./gradlew test --tests 'TestTopic.subirNaTopicLotada'
         timeout: 10
         max-score: 10
 
-    - name: Mostrar vagas
+    - name: "Subir: recusa passageiro repetido em assento normal"
+      id: subir-passageiro-repetido
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "Subir: recusa passageiro repetido em assento normal"
+        setup-command: ''
+        command: ./gradlew test --tests 'TestTopic.subirPassageiroRepetido'
+        timeout: 10
+        max-score: 10
+
+    - name: "Subir: recusa passageiro repetido em assento prioritário"
+      id: subir-passageiro-repetido-em-assento-prioritario
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "Subir: recusa passageiro repetido em assento prioritário"
+        setup-command: ''
+        command: ./gradlew test --tests 'TestTopic.subirPassageiroRepetidoEmAssentoPrioritario'
+        timeout: 10
+        max-score: 10
+
+    - name: "Descer: topic vazia não remove ninguém"
+      id: descida-com-topic-vazia
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "Descer: topic vazia não remove ninguém"
+        setup-command: ''
+        command: ./gradlew test --tests 'TestTopic.descidaComTopicVazia'
+        timeout: 10
+        max-score: 10
+
+    - name: "Descer: remove passageiro de assento normal"
+      id: descida-de-passageiro
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "Descer: remove passageiro de assento normal"
+        setup-command: ''
+        command: ./gradlew test --tests 'TestTopic.descidaDePassageiro'
+        timeout: 10
+        max-score: 10
+
+    - name: "Descer: remove passageiro de assento prioritário"
+      id: descida-de-passageiro-prioritario
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "Descer: remove passageiro de assento prioritário"
+        setup-command: ''
+        command: ./gradlew test --tests 'TestTopic.descidaDePassageiroPrioritario'
+        timeout: 10
+        max-score: 10
+
+    - name: "Descer: os demais passageiros continuam nos mesmos assentos"
+      id: descida-nao-desloca-os-demais
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "Descer: os demais passageiros continuam nos mesmos assentos"
+        setup-command: ''
+        command: ./gradlew test --tests 'TestTopic.descidaNaoDeslocaOsDemais'
+        timeout: 10
+        max-score: 10
+
+    - name: "Descer: passageiro que não está na topic não é removido"
+      id: descida-de-passageiro-que-nao-subiu
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "Descer: passageiro que não está na topic não é removido"
+        setup-command: ''
+        command: ./gradlew test --tests 'TestTopic.descidaDePassageiroQueNaoSubiu'
+        timeout: 10
+        max-score: 10
+
+    - name: "Nomes são comparados pelo conteúdo (equals), não pela referência (==)"
+      id: nomes-comparados-com-equals
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "Nomes são comparados pelo conteúdo (equals), não pela referência (==)"
+        setup-command: ''
+        command: ./gradlew test --tests 'TestTopic.nomesComparadosComEquals'
+        timeout: 10
+        max-score: 10
+
+    - name: "Vagas diminuem quando um passageiro sobe"
       id: mostrar-vagas
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Mostrar vagas
+        test-name: "Vagas diminuem quando um passageiro sobe"
         setup-command: ''
         command: ./gradlew test --tests 'TestTopic.mostrarVagas'
         timeout: 10
         max-score: 10
 
-    - name: Mostrar topic vazia
+    - name: "toString da topic vazia"
       id: mostrar-topic-vazia
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Mostrar topic vazia
+        test-name: "toString da topic vazia"
         setup-command: ''
         command: ./gradlew test --tests 'TestTopic.mostrarTopicVazia'
         timeout: 10
         max-score: 10
 
-    - name: Mostrar topic cheia
+    - name: "toString da topic cheia"
       id: mostrar-topic-cheia
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Mostrar topic cheia
+        test-name: "toString da topic cheia"
         setup-command: ''
         command: ./gradlew test --tests 'TestTopic.mostrarTopicCheia'
         timeout: 10
         max-score: 10
 
-    - name: Criação de passageiro
+    - name: "toString com assentos vazios e ocupados misturados"
+      id: mostrar-topic-parcial
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "toString com assentos vazios e ocupados misturados"
+        setup-command: ''
+        command: ./gradlew test --tests 'TestTopic.mostrarTopicParcial'
+        timeout: 10
+        max-score: 10
+
+    - name: "Construtor inicializa nome e idade"
       id: criacao-de-passageiro
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Criação de passageiro
+        test-name: "Construtor inicializa nome e idade"
         setup-command: ''
         command: ./gradlew test --tests 'TestPassageiro.criacaoDePassageiro'
         timeout: 10
         max-score: 10
 
-    - name: Test toString
-      id: test-tostring
+    - name: "toString retorna nome:idade"
+      id: test-to-string
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Test toString
+        test-name: "toString retorna nome:idade"
         setup-command: ''
         command: ./gradlew test --tests 'TestPassageiro.testToString'
         timeout: 10
         max-score: 10
 
-    - name: Prioridade verdadeira
-      id: prioridade-verdadeira
+    - name: "Idoso é prioritário e jovem não é"
+      id: prioridade-por-idade
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Prioridade verdadeira
+        test-name: "Idoso é prioritário e jovem não é"
         setup-command: ''
-        command: ./gradlew test --tests 'TestPassageiro.prioridadeVerdadeira'
+        command: ./gradlew test --tests 'TestPassageiro.prioridadePorIdade'
         timeout: 10
         max-score: 10
 
-    - name: Falsa prioridade
-      id: falsa-prioridade
+    - name: "Prioridade começa exatamente aos 65 anos"
+      id: limite-de-idade-prioridade
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Falsa prioridade
+        test-name: "Prioridade começa exatamente aos 65 anos"
         setup-command: ''
-        command: ./gradlew test --tests 'TestPassageiro.falsaPrioridade'
+        command: ./gradlew test --tests 'TestPassageiro.limiteDeIdadePrioridade'
         timeout: 10
         max-score: 10
 
@@ -194,24 +284,29 @@ jobs:
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
         INICIALIZACAO_RESULTS: "${{steps.inicializacao.outputs.result}}"
-        SUBIR-PASSAGEIRO-PRIORITARIO-COM-VAGA_RESULTS: "${{steps.subir-passageiro-prioritario-com-vaga.outputs.result}}"
-        SUBIR-PASSAGEIRO-SEM-PRIORIDADE_RESULTS: "${{steps.subir-passageiro-sem-prioridade.outputs.result}}"
-        SUBIR-PASSAGEIRO-PRIORITARIO-SEM-VAGA_RESULTS: "${{steps.subir-passageiro-prioritario-sem-vaga.outputs.result}}"
-        SUBIR-PASSAGEIRO-SEM-VAGA_RESULTS: "${{steps.subir-passageiro-sem-vaga.outputs.result}}"
-        DESCIDA-TOPIC-VAZIA_RESULTS: "${{steps.descida-topic-vazia.outputs.result}}"
+        TOPIC-SEM-ASSENTOS-PRIORITARIOS_RESULTS: "${{steps.topic-sem-assentos-prioritarios.outputs.result}}"
+        TOPIC-SO-COM-ASSENTOS-PRIORITARIOS_RESULTS: "${{steps.topic-so-com-assentos-prioritarios.outputs.result}}"
+        SUBIR-PRIORITARIO-COM-VAGA-PRIORITARIA_RESULTS: "${{steps.subir-prioritario-com-vaga-prioritaria.outputs.result}}"
+        SUBIR-SEM-PRIORIDADE-COM-VAGA-NORMAL_RESULTS: "${{steps.subir-sem-prioridade-com-vaga-normal.outputs.result}}"
+        SUBIR-PRIORITARIO-SEM-VAGA-PRIORITARIA_RESULTS: "${{steps.subir-prioritario-sem-vaga-prioritaria.outputs.result}}"
+        SUBIR-SEM-PRIORIDADE-SEM-VAGA-NORMAL_RESULTS: "${{steps.subir-sem-prioridade-sem-vaga-normal.outputs.result}}"
+        SUBIR-OCUPA-PRIMEIRO-ASSENTO-LIVRE_RESULTS: "${{steps.subir-ocupa-primeiro-assento-livre.outputs.result}}"
+        SUBIR-NA-TOPIC-LOTADA_RESULTS: "${{steps.subir-na-topic-lotada.outputs.result}}"
+        SUBIR-PASSAGEIRO-REPETIDO_RESULTS: "${{steps.subir-passageiro-repetido.outputs.result}}"
+        SUBIR-PASSAGEIRO-REPETIDO-EM-ASSENTO-PRIORITARIO_RESULTS: "${{steps.subir-passageiro-repetido-em-assento-prioritario.outputs.result}}"
+        DESCIDA-COM-TOPIC-VAZIA_RESULTS: "${{steps.descida-com-topic-vazia.outputs.result}}"
         DESCIDA-DE-PASSAGEIRO_RESULTS: "${{steps.descida-de-passageiro.outputs.result}}"
-        DESCIDA-PASSAGEIRO-NAO-SUBIU_RESULTS: "${{steps.descida-passageiro-nao-subiu.outputs.result}}"
-        SUBIR-TOPIC-LOTADA_RESULTS: "${{steps.subir-topic-lotada.outputs.result}}"
+        DESCIDA-DE-PASSAGEIRO-PRIORITARIO_RESULTS: "${{steps.descida-de-passageiro-prioritario.outputs.result}}"
+        DESCIDA-NAO-DESLOCA-OS-DEMAIS_RESULTS: "${{steps.descida-nao-desloca-os-demais.outputs.result}}"
+        DESCIDA-DE-PASSAGEIRO-QUE-NAO-SUBIU_RESULTS: "${{steps.descida-de-passageiro-que-nao-subiu.outputs.result}}"
+        NOMES-COMPARADOS-COM-EQUALS_RESULTS: "${{steps.nomes-comparados-com-equals.outputs.result}}"
         MOSTRAR-VAGAS_RESULTS: "${{steps.mostrar-vagas.outputs.result}}"
         MOSTRAR-TOPIC-VAZIA_RESULTS: "${{steps.mostrar-topic-vazia.outputs.result}}"
         MOSTRAR-TOPIC-CHEIA_RESULTS: "${{steps.mostrar-topic-cheia.outputs.result}}"
+        MOSTRAR-TOPIC-PARCIAL_RESULTS: "${{steps.mostrar-topic-parcial.outputs.result}}"
         CRIACAO-DE-PASSAGEIRO_RESULTS: "${{steps.criacao-de-passageiro.outputs.result}}"
-        TEST-TOSTRING_RESULTS: "${{steps.test-tostring.outputs.result}}"
-        PRIORIDADE-VERDADEIRA_RESULTS: "${{steps.prioridade-verdadeira.outputs.result}}"
-        FALSA-PRIORIDADE_RESULTS: "${{steps.falsa-prioridade.outputs.result}}"
+        TEST-TO-STRING_RESULTS: "${{steps.test-to-string.outputs.result}}"
+        PRIORIDADE-POR-IDADE_RESULTS: "${{steps.prioridade-por-idade.outputs.result}}"
+        LIMITE-DE-IDADE-PRIORIDADE_RESULTS: "${{steps.limite-de-idade-prioridade.outputs.result}}"
       with:
-        runners: inicializacao,subir-passageiro-prioritario-com-vaga,subir-passageiro-sem-prioridade,
-                subir-passageiro-prioritario-sem-vaga,subir-passageiro-sem-vaga,
-                descida-topic-vazia,descida-de-passageiro,descida-passageiro-nao-subiu,
-                subir-topic-lotada,mostrar-vagas,mostrar-topic-vazia,mostrar-topic-cheia,
-                criacao-de-passageiro,test-tostring,prioridade-verdadeira,falsa-prioridade
+        runners: inicializacao,topic-sem-assentos-prioritarios,topic-so-com-assentos-prioritarios,subir-prioritario-com-vaga-prioritaria,subir-sem-prioridade-com-vaga-normal,subir-prioritario-sem-vaga-prioritaria,subir-sem-prioridade-sem-vaga-normal,subir-ocupa-primeiro-assento-livre,subir-na-topic-lotada,subir-passageiro-repetido,subir-passageiro-repetido-em-assento-prioritario,descida-com-topic-vazia,descida-de-passageiro,descida-de-passageiro-prioritario,descida-nao-desloca-os-demais,descida-de-passageiro-que-nao-subiu,nomes-comparados-com-equals,mostrar-vagas,mostrar-topic-vazia,mostrar-topic-cheia,mostrar-topic-parcial,criacao-de-passageiro,test-to-string,prioridade-por-idade,limite-de-idade-prioridade
