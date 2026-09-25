@@ -1,6 +1,6 @@
 public class Topic {
 
-    public Topic(int capacidade, int qtdPrioritatios) {
+    public Topic(int capacidade, int qtdPrioritarios) {
     }
 
     public int getNumeroAssentosPrioritarios() {

@@ -7,7 +7,7 @@ public class Passageiro {
         return true;
     }
 
-    String getNome() {
+    public String getNome() {
         return null;
     }
 
